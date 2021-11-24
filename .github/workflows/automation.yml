@@ -1,0 +1,35 @@
+name: Cypress Demo
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      env:
+        description: 'Environment to test'
+        required: true
+        default: 'dev'
+  pull_request:
+    branches: [ master ]
+jobs:
+  # Name of the JOB
+  cypress-github-pipeline:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Repo Checkout
+        uses: actions/checkout@v2
+      
+      #NPM Installation 
+      - name: Cypress Execution
+        uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_gitHubMsg: "Hello Cypress GitHub Actions!!! running in {{github.event.inputs.env}}"
+      - name: Echo
+        run: echo Hello, world!
+      - name: Echoing envinronment under test
+        run: |
+          echo "Running in {{github.event.inputs.env}}"
+          echo test, and deploy your project.
