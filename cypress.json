@@ -1,7 +1,7 @@
 {
     "baseUrl": "https://the-internet.herokuapp.com/",
     "watchForFileChanges": false,
-    "pageLoadTimeout": 15000,
+    "pageLoadTimeout": 45000,
     "video": false,
     "chromeWebSecurity": false,
     "testFiles": "**/*.feature",
