@@ -1,0 +1,25 @@
+{
+  "name": "cypress-template",
+  "version": "1.0.0",
+  "description": "Cypress Template Framework",
+  "main": "index.js",
+  "scripts": {
+    "mocha-merge": "mochawesome-merge ./cypress/report/mochawesome_reports/*.json -o cypress/report/mochawesome_complete/complete-report.json",
+    "mocha-marge": "marge cypress/report/mochawesome_complete/complete-report.json -f complete-report -o cypress/report/mochawesome_complete",
+    "awesome-report": "npm run mocha-merge && npm run mocha-marge"
+  },
+  "author": "Abel Trejo Pineda",
+  "license": "ISC",
+  "dependencies": {
+    "@bahmutov/cy-api": "^1.6.1",
+    "cypress": "^9.1.0",
+    "cypress-cucumber-preprocessor": "^4.2.0",
+    "dayjs": "^1.10.6",
+    "mocha": "^9.1.3",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
+}

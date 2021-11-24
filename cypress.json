@@ -1,0 +1,25 @@
+{
+    "baseUrl": "https://the-internet.herokuapp.com/",
+    "watchForFileChanges": false,
+    "pageLoadTimeout": 15000,
+    "video": false,
+    "chromeWebSecurity": false,
+    "testFiles": "**/*.feature",
+    "screenshotsFolder": "cypress/results/screenshots",
+    "videosFolder": "cypress/results/videos",
+    "downloadsFolder": "cypress/results/downloads",
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "reportFileName": "cypress-execution",
+        "reportDir": "cypress/results/report/mochawesome_reports",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "timestamp": "HH/MM/ss_mmdd_yyyy"
+    },
+    "env": {
+        "TAGS": "not @skip",
+        "expandCollapseTime": 1500,
+        "gitHubMsg": "Si o queeeeeeeeeeeeee"
+    }
+}
