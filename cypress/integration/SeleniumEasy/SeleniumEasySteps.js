@@ -18,5 +18,6 @@ Then('I click on the {string} option', (optionName) => {
 
 And('I can say Hi to GitHubActions', () => {
     let msg = Cypress.env('gitHubMsg')
-    console.log(msg)
+    cy.logMsg(msg)
+    expect(msg).to.include('GitHub')
 })

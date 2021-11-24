@@ -26,10 +26,13 @@ jobs:
       - name: Cypress Execution
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_gitHubMsg: "Hello Cypress GitHub Actions!!! running in {{github.event.inputs.env}}"
+          CYPRESS_gitHubMsg: "Hello Cypress GitHub Actions!!! running in {{ github.event.inputs.env }}"
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_DASHBOARD_ID }}
       - name: Echo
         run: echo Hello, world!
       - name: Echoing envinronment under test
         run: |
-          echo "Running in {{github.event.inputs.env}}"
+          echo "Running in {{ github.event.inputs.env }}"
           echo test, and deploy your project.
