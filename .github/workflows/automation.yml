@@ -25,6 +25,9 @@ jobs:
       #NPM Installation 
       - name: Cypress Execution
         uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
         env:
           CYPRESS_gitHubMsg: "Hello Cypress GitHub Actions!!! running in {{ github.event.inputs.env }}"
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
