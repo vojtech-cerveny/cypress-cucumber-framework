@@ -8,8 +8,9 @@ on:
         description: 'Environment to test'
         required: true
         default: 'stage'
-  deployment_status["state"]:
-    types: ["success"]
+  deployment_status:
+    state:
+      types: ["success"]
 jobs:
   # Name of the JOB
   cypress-github-pipeline:
