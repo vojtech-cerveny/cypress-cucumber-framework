@@ -1,4 +1,4 @@
-Feature: Hero App WebPage Automation
+Feature: Selenium Easy WebPage Automation
 
 Background: Authentication is successful
     Given I open the 'SeleniumEasy' demo page
