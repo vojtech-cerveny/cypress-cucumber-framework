@@ -26,6 +26,7 @@ jobs:
       - name: Cypress Execution
         uses: cypress-io/github-action@v2.9.7
         with:
+          record: true
           browser: chrome
           headless: true
         env:

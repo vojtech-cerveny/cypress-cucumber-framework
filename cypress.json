@@ -1,8 +1,10 @@
 {
     "baseUrl": "https://the-internet.herokuapp.com/",
     "watchForFileChanges": false,
-    "pageLoadTimeout": 45000,
-    "video": false,
+    "pageLoadTimeout": 35000,
+    "responseTimeout": 45000,
+    "defaultCommandTimeout": 6000,
+    "video": true,
     "chromeWebSecurity": false,
     "testFiles": "**/*.feature",
     "screenshotsFolder": "cypress/results/screenshots",
