@@ -17,15 +17,17 @@ module.exports = (on, config) => {
     let filePath = (envKey === 'default') ? '' : 'cypress/config'
 
     cleanReports();
+    //Uncomment the line 22 below locally ONLY to use the config files
+    //Commented on remote repo as it overwrites ENV variables passed on by GitHub Actions
     //return getConfigByFile(fileName, filePath);
 }
+
+function cleanReports() {
+    fs.rmdirSync('./cypress/results', { recursive: true });
+};
 
 function getConfigByFile(file, filePath) {
     const pathToConfig = path.resolve('././', filePath, file);
     console.log("Config file: " + file);
     return fs_extra.readJson(pathToConfig);
-};
-
-function cleanReports() {
-    fs.rmdirSync('./cypress/results', { recursive: true });
 };

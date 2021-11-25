@@ -15,6 +15,7 @@ jobs:
   cypress-github-pipeline:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    environment: ${{github.event.inputs.env}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,7 +39,7 @@ jobs:
           browser: chrome
           headless: true
         env:
-          CYPRESS_gitHubMsg: Hello Cypress GitHub Actions!!! running in {{ github.event.inputs.env }}
+          CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in {{ github.event.inputs.env }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_DASHBOARD_ID }}
