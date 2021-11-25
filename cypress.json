@@ -20,8 +20,9 @@
         "timestamp": "HH/MM/ss_mmdd_yyyy"
     },
     "env": {
+        "envKey": "dev",
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
-        "gitHubMsg": "Si o queeeeeeeeeeeeee"
+        "gitHubMsg": "Si o queeeeeeeeeeeeee dev!!!!"
     }
 }
