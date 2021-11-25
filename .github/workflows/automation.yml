@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     #if: ${{ github.event_name == 'workflow_dispatch' }}
     if: ${{ github.event.inputs.deployment == 'yes' }}
-    environment: ${{ (github.event.inputs.deployment == 'yes' && 'dev') || github.event.inputs.env}}
+    environment: ${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
