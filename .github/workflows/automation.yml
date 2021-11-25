@@ -12,9 +12,10 @@ on:
         description: 'Auto Deployment'
         required: true
         default: 'no'
-  deployment_status:
-    state:
-      types: ["success"]
+  #Infinite cycle for some reason
+  #deployment_status:
+  #  state:
+  #    types: ["success"]
 jobs:
   # Name of the JOB
   cypress-github-pipeline:
