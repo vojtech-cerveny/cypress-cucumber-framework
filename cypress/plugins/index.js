@@ -17,7 +17,7 @@ module.exports = (on, config) => {
     let filePath = (envKey === 'default') ? '' : 'cypress/config'
 
     cleanReports();
-    return getConfigByFile(fileName, filePath);
+    //return getConfigByFile(fileName, filePath);
 }
 
 function getConfigByFile(file, filePath) {
