@@ -24,7 +24,7 @@ jobs:
       TEST_ENVIRONMENT: ${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}
     #if: ${{ github.event_name == 'workflow_dispatch' }}
     if: ${{ github.event.inputs.deployment == 'yes' }}
-    environment: ${{env.TEST_ENVIRONMENT}}
+    environment: "$TEST_ENVIRONMENT"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
