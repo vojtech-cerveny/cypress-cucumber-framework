@@ -8,6 +8,10 @@ on:
         description: 'Environment to test'
         required: true
         default: 'stage'
+      deployment:
+        description: 'Auto Deployment'
+        required: true
+        default: 'no'
   deployment_status:
     state:
       types: ["success"]
@@ -16,8 +20,11 @@ jobs:
   cypress-github-pipeline:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    if: ${{github.event_name == 'workflow_dispatch'}}
+    #if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event.inputs.deployment == 'yes' }}
     environment: dev
+    if: ${{ github.event.inputs.deployment == 'no' }}
+    environment: ${{github.event.inputs.env}}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -26,11 +33,9 @@ jobs:
         uses: actions/checkout@v2
       
       #Random echos
-      - name: Echo
-        run: echo Hello, world!
       - name: Echoing envinronment under test
         run: |
-          echo "Running in {{ github.event.inputs.env }}"
+          echo "Running in ${{ github.event.inputs.env }}"
           echo test, and deploy your project
 
       #NPM Installation 
@@ -41,7 +46,7 @@ jobs:
           browser: chrome
           headless: true
         env:
-          CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in {{ github.event.inputs.env }}
+          CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in ${{ github.event.inputs.env }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_DASHBOARD_ID }}
