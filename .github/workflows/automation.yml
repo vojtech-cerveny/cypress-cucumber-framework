@@ -47,8 +47,8 @@ jobs:
           browser: chrome
           headless: true
         env:
-          CYPRESS_envKey: $TEST_ENVIRONMENT
-          CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in $TEST_ENVIRONMENT
+          CYPRESS_envKey: ${{env.TEST_ENVIRONMENT}}
+          CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in ${{env.TEST_ENVIRONMENT}}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_DASHBOARD_ID }}
