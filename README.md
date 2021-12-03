@@ -1,4 +1,4 @@
-### RUSTY INC ORG CHART AUTOMATION FRAMEWORK
+### CYPRESS CUCUMBER AUTOMATION FRAMEWORK
 ----------------------------------------------------------------------------
 
 #### LOCAL SET UP
