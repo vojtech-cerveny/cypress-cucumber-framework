@@ -37,5 +37,13 @@ Given('I Debugg', () => {
         cy.logMsg(cypressEnv["config_CYPRESS_ACTION_TEST"])
     })
 
+    cy.readFile('cypress/fixtures/cypressConfig.json').then((cypressEnv) => {
+        cy.logMsg(cypressEnv.env['ACTION_TEST'])
+        cy.logMsg(cypressEnv.env["process_env_ACTION_TEST"])
+        cy.logMsg(cypressEnv.env["process_env_CYPRESS_ACTION_TEST"])
+        cy.logMsg(cypressEnv.env["config_ACTION_TEST"])
+        cy.logMsg(cypressEnv.env["config_CYPRESS_ACTION_TEST"])
+    })
+
     cy.wait(2500)
 })

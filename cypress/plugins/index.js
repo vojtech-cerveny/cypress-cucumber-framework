@@ -13,18 +13,17 @@ module.exports = (on, config) => {
     on('file:preprocessor', cucumber());
 
     const envKey = config.env.envKey || 'default';
+    const testTrigger = config.env.TEST_TRIGGER || 'local';
+
     let fileName = ( envKey === 'default') ? 'cypress.json' : `cypress_${envKey}.json`
     let filePath = (envKey === 'default') ? '' : 'cypress/config'
 
     cleanReports();
-    //Commented on remote repo as it overwrites ENV variables passed on by GitHub Actions
-    //return getConfigByFile(fileName, filePath);
-    
     readGitHubSecrets(config);
-    //config.env.ACTION_TEST = "SI JALATION!!!"
-    //config.env.ACTION_TEST = process.env.ACTION_TEST
-    return config
-    
+
+    if (testTrigger === 'local') {
+        return getConfigByFile(fileName, filePath);
+    }
 }
 
 function cleanReports() {
@@ -42,4 +41,5 @@ function readGitHubSecrets(config) {
     cypressEnv["process_env_CYPRESS_ACTION_TEST"] = process.env.CYPRESS_ACTION_TEST
     cypressEnv["config_ACTION_TEST"] = config.env.ACTION_TEST
     fs.writeFileSync('./cypress/fixtures/cypressEnv.json', JSON.stringify(cypressEnv))
+    fs.writeFileSync('./cypress/fixtures/cypressConfig.json', JSON.stringify(config))
 }

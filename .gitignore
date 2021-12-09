@@ -2,3 +2,4 @@ node_modules
 
 cypress/results
 cypress/fixtures/cypressEnv.json
+cypress/fixtures/cypressConfig.json
