@@ -28,8 +28,13 @@ Given('I Debugg', () => {
     cy.logMsg(Cypress.env('gitHubMsg'))
     cy.logMsg(Cypress.env('ACTION_TEST'))
 
+    cy.logMsg("READING FILE!!!!!!!!!!!!!")
     cy.readFile('cypress/fixtures/cypressEnv.json').then((cypressEnv) => {
         cy.logMsg(cypressEnv['ACTION_TEST'])
+        cy.logMsg(cypressEnv["process_env_ACTION_TEST"])
+        cy.logMsg(cypressEnv["process_env_CYPRESS_ACTION_TEST"])
+        cy.logMsg(cypressEnv["config_ACTION_TEST"])
+        cy.logMsg(cypressEnv["config_CYPRESS_ACTION_TEST"])
     })
 
     cy.wait(2500)
