@@ -22,3 +22,9 @@ And('I can say Hi to GitHubActions', () => {
     cy.logMsg(msg)
     expect(msg).to.include(environment)
 })
+
+Given('I Debugg', () => {
+    cy.visit('www.google.com')
+    cy.logMsg(Cypress.env('gitHubMsg'))
+    cy.logMsg(Cypress.env('ACTION_TEST'))
+})

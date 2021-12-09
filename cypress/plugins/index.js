@@ -17,9 +17,13 @@ module.exports = (on, config) => {
     let filePath = (envKey === 'default') ? '' : 'cypress/config'
 
     cleanReports();
-    //Uncomment the line 22 below locally ONLY to use the config files
     //Commented on remote repo as it overwrites ENV variables passed on by GitHub Actions
     //return getConfigByFile(fileName, filePath);
+
+    //config.env.ACTION_TEST = "SI JALATION!!!"
+    config.env.ACTION_TEST = process.env.ACTION_TEST
+    return config
+    
 }
 
 function cleanReports() {
