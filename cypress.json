@@ -1,5 +1,4 @@
 {
-    "baseUrl": "https://the-internet.herokuapp.com/",
     "watchForFileChanges": false,
     "pageLoadTimeout": 60000,
     "responseTimeout": 45000,
@@ -24,6 +23,6 @@
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
         "gitHubMsg": "Si o queeeeeeeeeeeeee dev!!!!",
-        "ACTION_TEST": "[SHOULD BE OVERRIDEN]"
+        "ACTION_TEST": "[SHOULD BE OVERWRITTEN]"
     }
 }
