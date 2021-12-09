@@ -20,12 +20,9 @@ module.exports = (on, config) => {
     //Commented on remote repo as it overwrites ENV variables passed on by GitHub Actions
     //return getConfigByFile(fileName, filePath);
     let cypressEnv = {}
-    cypressEnv["process_env_ACTION_TEST"] = process.env.ACTION_TEST
-    cypressEnv["process_env_CYPRESS_ACTION_TEST"] = process.env.CYPRESS_ACTION_TEST
-    cypressEnv["config_ACTION_TEST"] = config.env.ACTION_TEST
-    cypressEnv["config_CYPRESS_ACTION_TEST"] = config.env.CYPRESS_ACTION_TEST
     
-    fs.writeFileSync('./cypress/fixtures/cypressEnv.json', JSON.stringify(cypressEnv))
+    
+    readGitHubSecrets();
     //config.env.ACTION_TEST = "SI JALATION!!!"
     //config.env.ACTION_TEST = process.env.ACTION_TEST
     return config
@@ -41,3 +38,9 @@ function getConfigByFile(file, filePath) {
     console.log("Config file: " + file);
     return fs_extra.readJson(pathToConfig);
 };
+
+function readGitHubSecrets() {
+    cypressEnv["process_env_CYPRESS_ACTION_TEST"] = process.env.CYPRESS_ACTION_TEST
+    cypressEnv["config_ACTION_TEST"] = config.env.ACTION_TEST
+    fs.writeFileSync('./cypress/fixtures/cypressEnv.json', JSON.stringify(cypressEnv))
+}
