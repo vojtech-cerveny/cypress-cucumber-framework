@@ -1,7 +1,17 @@
 /// <reference types="cypress" />
 
-import Selectors from './Selectors'
+import HeroAppQuery from './Selectors/HeroAppQuery'
+import SeleniumEasyQuery from './Selectors/SeleniumEasyQuery';
+
 const dayjs = require('dayjs');
+
+Cypress.Commands.add('login', (pageName) => {
+    let baseURL = Cypress.env(pageName)
+    cy.visit(baseURL)
+    if (pageName === "SeleniumEasy") {
+        SeleniumEasyQuery.selectors('homePromptClose').click()
+    }
+});
 
 Cypress.Commands.add('logMsg', (logMsg) => {
     console.log(logMsg);

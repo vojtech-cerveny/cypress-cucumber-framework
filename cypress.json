@@ -1,29 +1,25 @@
-{
-    
+{ 
     "watchForFileChanges": false,
     "pageLoadTimeout": 60000,
     "responseTimeout": 45000,
     "defaultCommandTimeout": 6000,
-    "video": true,
+    "video": false,
     "chromeWebSecurity": false,
     "testFiles": "**/*.feature",
     "screenshotsFolder": "cypress/results/screenshots",
     "videosFolder": "cypress/results/videos",
     "downloadsFolder": "cypress/results/downloads",
-    "reporter": "mochawesome",
+    "reporter": "cypress-multi-reporters",
     "reporterOptions": {
-        "reportFileName": "cypress-execution",
-        "reportDir": "cypress/results/report/mochawesome_reports",
-        "overwrite": false,
-        "html": false,
-        "json": true,
-        "timestamp": "HH/MM/ss_mmdd_yyyy"
+        "configFile": "cypress/config/reporter-configs.json"
     },
     "env": {
         "envKey": "dev",
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
         "gitHubMsg": "Si o queeeeeeeeeeeeee dev!!!!",
-        "ACTION_TEST": "[SHOULD BE OVERWRITTEN]"
+        "ACTION_TEST": "[SHOULD BE OVERWRITTEN]",
+        "SeleniumEasy": "https://demo.seleniumeasy.com/",
+        "HeroApp": "https://the-internet.herokuapp.com/"
     }
 }

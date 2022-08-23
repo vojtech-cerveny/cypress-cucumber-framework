@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import Selectors from '../../support/Selectors'
+import SeleniumEasyQuery from '../../support/Selectors/SeleniumEasyQuery';
 
 class SeleniumEasyObject {
     

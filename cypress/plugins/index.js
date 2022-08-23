@@ -5,8 +5,7 @@
  */
 
 const cucumber = require('cypress-cucumber-preprocessor').default;
-const fs = require('fs');
-const fs_extra = require('fs-extra');
+const fs = require('fs-extra');
 const path = require('path');
 
 module.exports = (on, config) => {
@@ -33,7 +32,7 @@ function cleanReports() {
 function getConfigByFile(file, filePath) {
     const pathToConfig = path.resolve('././', filePath, file);
     console.log("Config file: " + file);
-    return fs_extra.readJson(pathToConfig);
+    return fs.readJson(pathToConfig);
 };
 
 function readGitHubSecrets(config) {
