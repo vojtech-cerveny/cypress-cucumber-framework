@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps';
+import { Given, When, Then, And } from "@badeball/cypress-cucumber-preprocessor"
 import SeleniumEasyQuery from '../../support/Selectors/SeleniumEasyQuery';
 
 When('I expand the {string} menu', (menuOption) => {
