@@ -41,13 +41,15 @@ jobs:
       - name: Set Up Environment
         run: |
           echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}" >> $GITHUB_ENV
-          curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -o cypress/config/cucumber-json-formatter
-          chmod +x cypress/config/cucumber-json-formatter
+          curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -o cypress/config/cucumber_json/cucumber-json-formatter
+          chmod +x cypress/config/cucumber_json/cucumber-json-formatter
           echo "${{ github.workspace }}/cypress/config/cucumber_json" >> $GITHUB_PATH
+          cd cypress/config/cucumber_json && ls -al
 
       # Run Test and Deploy
       - name: Quality Gates
         run: |
+          echo $PATH
           echo Running in ${{ env.TEST_ENVIRONMENT }}
           echo Test, and deploy your project
           cucumber-json-formatter --help
