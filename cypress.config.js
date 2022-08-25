@@ -5,6 +5,7 @@ const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esb
 
 const fs = require('fs-extra');
 const path = require('path');
+let githubActionsKeys = {}
 
 async function setupNodeEvents(on, config) {
     await preprocessor.addCucumberPreprocessorPlugin(on, config);
@@ -24,6 +25,16 @@ async function setupNodeEvents(on, config) {
 
     cleanReports();
     readGitHubSecrets(config);
+  
+    on('task', {
+      logMsg(msg) {
+        console.log(msg);
+        return null;
+      },
+      getGithubKeys: () => {
+        return githubActionsKeys;
+      },
+    });
 
     if (testTrigger === 'local') {
         return getConfigByFile(fileName, filePath);
@@ -76,11 +87,6 @@ function getConfigByFile(file, filePath) {
 };
 
 function readGitHubSecrets(config) {
-    let cypressEnv = {}
-    cypressEnv["process_env_CYPRESS_ACTION_TEST"] = process.env.CYPRESS_ACTION_TEST
-    cypressEnv["config_ACTION_TEST"] = config.env.ACTION_TEST
-    console.log(process.env.CYPRESS_ACTION_TEST)
-    console.log(config.env.ACTION_TEST)
-    fs.writeFileSync('./cypress/fixtures/cypressEnv.json', JSON.stringify(cypressEnv))
-    fs.writeFileSync('./cypress/fixtures/cypressConfig.json', JSON.stringify(config))
+    githubActionsKeys["process_env_CYPRESS_ACTION_TEST"] = process.env.CYPRESS_ACTION_TEST
+    githubActionsKeys["config_ACTION_TEST"] = config.env.ACTION_TEST
 }

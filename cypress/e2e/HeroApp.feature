@@ -6,3 +6,4 @@ Background: Authorized access
 Scenario: Open and close a basic auth promt
     When I click on the "Basic Auth" demo option
     # Then I can add my credentials
+    Then I can say Hi to Github Actions
