@@ -36,7 +36,7 @@ jobs:
       # Setting environment
       - name: Echo envinronment under test
         run: |
-          echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}} >> $GITHUB_ENV
+          echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}" >> $GITHUB_ENV
           echo "Running in " ${{ env.TEST_ENVIRONMENT }}
           echo Test, and deploy your project
       
