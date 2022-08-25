@@ -43,6 +43,7 @@ jobs:
           echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}" >> $GITHUB_ENV
           mkdir cypress/config/cucumber_json
           echo "${{ github.workspace }}/cypress/config/cucumber_json" >> $GITHUB_PATH
+          ls -al
           cd cypress/config/cucumber_json
           pwd
           curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -o cucumber-json-formatter
