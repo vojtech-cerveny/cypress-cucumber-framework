@@ -38,43 +38,39 @@ jobs:
           node-version: 18
       
       # Setting environment
+      # /home/runner/work/cypress-cucumber-framework/cypress-cucumber-framework/cypress/config/cucumber_json
       - name: Set Up Environment
         run: |
           echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}" >> $GITHUB_ENV
           mkdir cypress/config/cucumber_json
           echo "${{ github.workspace }}/cypress/config/cucumber_json" >> $GITHUB_PATH
-          ls -al
           cd cypress/config/cucumber_json
-          pwd
           curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -o cucumber-json-formatter
-          ls -al
           chmod +x cucumber-json-formatter
-          ls -al
 
       # Run Test and Deploy
       - name: Quality Gates
         run: |
-          echo $PATH
           echo Running in ${{ env.TEST_ENVIRONMENT }}
           echo Test, and deploy your project
           cucumber-json-formatter --help
 
       #NPM Installation 
-      # - name: Cypress Execution
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     ci-build-id: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
-      #     tag: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
-      #     record: true
-      #     browser: chrome
-      #     headed: false
-      #     install: true
-      #   env:
-      #     CYPRESS_TAGS: "not @skip"
-      #     CYPRESS_TEST_TRIGGER: ${{github.event_name}}
-      #     CYPRESS_envKey: ${{env.TEST_ENVIRONMENT}}
-      #     CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in ${{env.TEST_ENVIRONMENT}}
-      #     CYPRESS_ACTION_TEST: ${{ secrets.CYPRESS_ACTION_TEST }}
-      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_DASHBOARD_ID }}
+      - name: Cypress Execution
+        uses: cypress-io/github-action@v4
+        with:
+          ci-build-id: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
+          tag: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
+          record: true
+          browser: chrome
+          headed: false
+          install: true
+        env:
+          CYPRESS_TAGS: "not @skip"
+          CYPRESS_TEST_TRIGGER: ${{github.event_name}}
+          CYPRESS_envKey: ${{env.TEST_ENVIRONMENT}}
+          CYPRESS_gitHubMsg: ${{ secrets.GIT_CUSTOM_MSG }} running in ${{env.TEST_ENVIRONMENT}}
+          CYPRESS_ACTION_TEST: ${{ secrets.CYPRESS_ACTION_TEST }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_DASHBOARD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_DASHBOARD_ID }}
