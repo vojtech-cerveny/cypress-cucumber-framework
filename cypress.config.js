@@ -47,10 +47,10 @@ module.exports = defineConfig({
   e2e: {
     watchForFileChanges: false,
     specPattern: ["**/*.feature", "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}"],
-    pageLoadTimeout: 60000,
+    pageLoadTimeout: 90000,
     responseTimeout: 45000,
     defaultCommandTimeout: 6000,
-    video: false,
+    video: true,
     chromeWebSecurity: false,
     screenshotsFolder: "cypress/results/screenshots",
     videosFolder: "cypress/results/videos",
