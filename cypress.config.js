@@ -63,7 +63,6 @@ module.exports = defineConfig({
         "envKey": "dev",
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
-        "gitHubMsg": "Si o queeeeeeeeeeeeee dev!!!!",
         "ACTION_TEST": "[SHOULD BE OVERWRITTEN]",
         "SeleniumEasy": "https://demo.seleniumeasy.com/",
         "HeroApp": "https://the-internet.herokuapp.com/"
