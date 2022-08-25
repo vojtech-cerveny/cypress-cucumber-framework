@@ -29,7 +29,7 @@
       "output": "cypress/results/reports/cucumber_json/cucumber-messages.ndjson"
     },
     "json": {
-      "formatter": "cypress/config/cucumber-json-formatter",
+      "formatter": "cypress/config/cucumber_json/cucumber-json-formatter",
       "enabled": true,
       "output": "cypress/results/reports/cucumber_json/cypress-cucumber.json"
     }

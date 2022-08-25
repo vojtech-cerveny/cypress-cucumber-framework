@@ -3,4 +3,4 @@ node_modules
 cypress/results
 cypress/fixtures/cypressEnv.json
 cypress/fixtures/cypressConfig.json
-cypress/config/cucumber-json-formatter
+cypress/config/cucumber_json
