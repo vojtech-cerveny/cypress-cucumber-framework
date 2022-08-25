@@ -79,6 +79,8 @@ function readGitHubSecrets(config) {
     let cypressEnv = {}
     cypressEnv["process_env_CYPRESS_ACTION_TEST"] = process.env.CYPRESS_ACTION_TEST
     cypressEnv["config_ACTION_TEST"] = config.env.ACTION_TEST
+    console.log(process.env.CYPRESS_ACTION_TEST)
+    console.log(config.env.ACTION_TEST)
     fs.writeFileSync('./cypress/fixtures/cypressEnv.json', JSON.stringify(cypressEnv))
     fs.writeFileSync('./cypress/fixtures/cypressConfig.json', JSON.stringify(config))
 }
