@@ -22,28 +22,37 @@ on:
 jobs:
   cypress-github-pipeline:
     runs-on: ubuntu-latest
-    env:
+    # env:
       #${{ github.event_name == 'workflow_dispatch' }}
-      TEST_ENVIRONMENT: ${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}
-    environment: "$TEST_ENVIRONMENT"
+      # TEST_ENVIRONMENT: ${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}
+    # environment: "$TEST_ENVIRONMENT"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Repo Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       
-      #Random echos
-      - name: Echoing envinronment under test
+      # Setting environment
+      - name: Echo envinronment under test
         run: |
-          echo "Running in $TEST_ENVIRONMENT"
-          echo test, and deploy your project
+          echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}} >> $GITHUB_ENV
+          echo "Running in " ${{ env.TEST_ENVIRONMENT }}
+          echo Test, and deploy your project
+      
+      # Run Test and Deploy
+      - name: Quality Gates
+        run: |
+          echo "Running in " ${{ env.TEST_ENVIRONMENT }}
+          echo Test, and deploy your project
 
       #NPM Installation 
       - name: Cypress Execution
-        uses: cypress-io/github-action@v2.9.7
+        uses: cypress-io/github-action@v4
         with:
-          record: true
+          ci-build-id: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
+          tag: '${{ github.job }}:${{ github.run_number }}-${{ github.run_attempt }}'
+          record: false
           browser: chrome
           headless: true
         env:
