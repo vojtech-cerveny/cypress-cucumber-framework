@@ -33,12 +33,7 @@ jobs:
       - name: Repo Checkout
         uses: actions/checkout@v3
       
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      
       # Setting environment
-      # /home/runner/work/cypress-cucumber-framework/cypress-cucumber-framework/cypress/config/cucumber_json
       - name: Set Up Environment
         run: |
           echo "TEST_ENVIRONMENT=${{ github.event.inputs.deployment == 'yes' && 'dev' || github.event.inputs.env}}" >> $GITHUB_ENV
@@ -53,7 +48,6 @@ jobs:
         run: |
           echo Running in ${{ env.TEST_ENVIRONMENT }}
           echo Test, and deploy your project
-          cucumber-json-formatter --help
 
       #NPM Installation 
       - name: Cypress Execution
