@@ -14,7 +14,7 @@ Cypress.Commands.add('login', (pageName) => {
 });
 
 Cypress.Commands.add('logMsg', (logMsg) => {
-    console.log(logMsg);
+    cy.task('logMsg', logMsg)
     cy.log(logMsg);
 });
 
