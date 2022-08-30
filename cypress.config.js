@@ -4,7 +4,6 @@ const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const createEsbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
 
 const fs = require('fs-extra');
-const path = require('path');
 let githubActionsKeys = {}
 
 async function setupNodeEvents(on, config) {
@@ -17,12 +16,6 @@ async function setupNodeEvents(on, config) {
       })
     );
     
-    const envKey = config.env.envKey || 'default';
-    const testTrigger = config.env.TEST_TRIGGER || 'local';
-
-    let fileName = ( envKey === 'default') ? 'cypress.json' : `cypress_${envKey}.json`
-    let filePath = (envKey === 'default') ? '' : 'cypress/config'
-
     cleanReports();
     readGitHubSecrets(config);
   
@@ -36,11 +29,14 @@ async function setupNodeEvents(on, config) {
       },
     });
 
-    if (testTrigger === 'local') {
-        return getConfigByFile(fileName, filePath);
+    const envKey = config.env.envKey || 'default';
+    config.env.TEST_TRIGGER = 'local';
+
+    if (envKey !== 'default') {
+      return getConfigByFile(envKey, config);
+    } else {
+      return config;
     }
-    // Make sure to return the config object as it might have been modified by the plugin.
-    return config;
   }
   
 module.exports = defineConfig({
@@ -55,12 +51,12 @@ module.exports = defineConfig({
     screenshotsFolder: "cypress/results/screenshots",
     videosFolder: "cypress/results/videos",
     downloadsFolder: "cypress/results/downloads",
+    supportFile: 'cypress/support/e2e.js',
     reporter: "cypress-multi-reporters",
     reporterOptions: {
         "configFile": "cypress/config/reporter-configs.json"
     },
     env: {
-        "envKey": "dev",
         "TAGS": "not @skip",
         "expandCollapseTime": 1500,
         "ACTION_TEST": "[SHOULD BE OVERWRITTEN]",
@@ -68,7 +64,6 @@ module.exports = defineConfig({
         "HeroApp": "https://the-internet.herokuapp.com/"
     },
     setupNodeEvents,
-    supportFile: 'cypress/support/e2e.js'
   }
 })
 
@@ -79,10 +74,15 @@ function cleanReports() {
     }
 };
 
-function getConfigByFile(file, filePath) {
-    const pathToConfig = path.resolve('././', filePath, file);
-    console.log("Config file: " + file);
-    return fs.readJson(pathToConfig);
+function getConfigByFile(envKey, config) {
+  let fileName = `cypress_${envKey}.json`
+  console.log("Config file: " + fileName);
+
+  let rawData = fs.readFileSync(`cypress/config/${fileName}`);
+  let newConfig = JSON.parse(rawData);
+
+  config = {...config, ...newConfig}
+  return config;
 };
 
 function readGitHubSecrets(config) {
