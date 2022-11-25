@@ -1,4 +1,4 @@
-name: Cypress Pipeline
+name: Cypress Pipeline debug
 
 on:
   # Allows you to run this workflow manually from the Actions tab
