@@ -62,6 +62,8 @@ jobs:
           CYPRESS_TEST_TRIGGER: ${{github.event_name}}
           CYPRESS_TAGS: "not @skip"
           CYPRESS_ACTION_TEST: ${{ secrets.CYPRESS_ACTION_TEST }}
+      - name: Test if cucumber-json-formatter can generate json file from ndjson
+        run: cucumber-json-formatter < cypress/results/reports/cucumber_json/cucumber-messages.ndjson > cypress/results/cucumber-standalone.json
       - name: Store test results into artifacts
         uses: actions/upload-artifact@v3
         if: always()
