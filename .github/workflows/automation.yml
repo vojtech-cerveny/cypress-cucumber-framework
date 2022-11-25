@@ -34,6 +34,7 @@ jobs:
           cd cypress/config/cucumber_json
           curl https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -o cucumber-json-formatter
           chmod +x cucumber-json-formatter
+	  cucumber-json-formatter --help
 
       # Run Test and Deploy
       - name: Quality Gates
